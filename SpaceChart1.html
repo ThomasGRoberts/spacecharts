@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Highcharts Tutorial</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="SpaceChart1_style.js"></script>  
+</head>
+<body>
+<div id="container" style="width: 750px; height: 500px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {  
+   var chart = {
+      type: 'area'
+   };
+   var title = {
+      text: 'Satellites Launched by Country'   
+   };
+   var subtitle = {
+      text: '(1957-1990)'  
+   };
+   var xAxis = {
+      allowDecimals: false,
+      labels: {
+         formatter: function () {
+            return this.value; // clean, unformatted number for year
+         }
+      }
+   };
+   var yAxis = {
+      title: {
+         text: 'Year'
+      }
+   };
+   var tooltip = {
+      pointFormat: '{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}'
+   };
+   var plotOptions = {
+      area: {
+         pointStart: 1957,
+         marker: {
+            enabled: false,
+            symbol: 'circle',
+            radius: 2,
+            states: {
+               hover: {
+                 enabled: true
+               }
+            }
+         }
+      }
+   };
+   var series= [{
+         name: 'United States',
+            data: [0, 7, 11, 16, 29, 50, 38, 55, 60, 72, 53, 41, 33, 24, 25, 24, 21, 14, 23, 21,16, 25, 15, 12, 16, 14, 19, 22, 15, 7, 7, 13, 17, 22]
+        }, {
+            name: 'Soviet Union',
+            data: [2, 1, 3, 3, 6, 20, 17, 30, 48, 44, 66, 74, 70, 81, 82, 74, 85, 81, 88, 99, 97, 88, 86, 89, 96, 101, 98, 97, 98, 91, 95, 89, 74, 75]
+        },{
+            name: 'Others',
+            data: [0, 0, 0, 0, 0, 2, 0, 2, 4, 2, 8, 4, 7, 9, 13, 8, 3, 11, 14, 8, 11, 11, 5, 4, 11, 6, 10, 10, 8, 5, 8, 14, 10, 19]
+      }
+   ];     
+      
+   var json = {};   
+   json.chart = chart; 
+   json.title = title;   
+   json.subtitle = subtitle; 
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;  
+   json.series = series;
+   json.plotOptions = plotOptions;
+   $('#container').highcharts(json);
+  
+});
+</script>
+</body>
+</html>
