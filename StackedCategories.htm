@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>DoD Space Budget</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+<script src="./stackedcategories_style.js"></script>
+<script src="./Highcharts/code/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+
+
+		<script type="text/javascript">
+Highcharts.setOptions({
+    lang: {
+        thousandsSep: ','
+    },
+    exporting: {
+         enabled: false
+}
+});
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'Department of Defense Space Budget by Category'
+    },
+    subtitle: {
+        text: 'Actuals (FY13-FY16), Enacted (FY17), and FYDPs (FY18-FY22)'
+    },
+    xAxis: {
+        categories: ['FY13', 'FY14', 'FY15', 'FY16', 'FY17', 'FY18', 'FY19','FY20','FY21','FY22'],
+        tickmarkPlacement: 'on',
+        plotLines: [{
+        color: '#303A42',
+        width: 1.5,
+        value: 4.5,
+        dashStyle: 'dash',
+        zIndex: 5,
+        // label: {
+        //         text: 'Trump PBR',
+        //         verticalAlign: 'top',
+        //         textAlign: 'center',
+        //         y: 40
+        //     }
+    }],
+        plotBands: [{ // visualize the weekend
+            from: 4.5,
+            to: 9.5,
+            color: '#eaeaea'
+        }],
+        title: {
+            enabled: false
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Billions of Then-Year Dollars'
+        },
+        labels: {
+            formatter: function () {
+                return '$'+this.value/1000+'B';
+            }
+        }
+    },
+    tooltip: {
+            // valuePrefix: "$",
+            // valueSuffix: 'B'
+             pointFormat: '{series.name}: $ <b>{point.y:,.1f}</b> M<br/>'
+    },
+    plotOptions: {
+        area: {
+            stacking: 'normal',
+            lineColor: '#666666',
+            lineWidth: 1,
+            marker: {
+                lineWidth: 1,
+                lineColor: '#666666'
+            }
+        }
+    },
+    series: [{
+        name: 'AEHF',
+        data: [786.376, 652.586, 612.890, 561.366, 904.700, 202.584, 159.245, 78.359, 70.515, 14.852],
+        marker: {
+            symbol: 'circle'
+        }
+    }, {
+        name: 'EELV',
+        data: [1687.836, 1880.863, 1381.046, 1455.877, 1803.439, 1861.480, 1789.464, 1463.952, 1045.841, 1379.072],
+        marker: {
+            symbol: 'circle'
+        }
+    }, {
+        name: 'GPS',
+        data: [1352.819, 1278.903, 1016.122, 952.380, 860.230, 1103.894, 1558.805, 1329.475, 1163.092, 1373.077],
+        marker: {
+            symbol: 'circle'
+        }
+    }, {
+        name: 'SBIRS',
+        data: [869.564, 969.621, 799.597, 834.866, 540.412, 1479.831, 875.824, 1039.921, 1451.411, 1679.033],
+        marker: {
+            symbol: 'circle'
+        }
+    }, {
+        name: 'Others',
+        data: [1596.324, 2074.048, 1849.912, 2309.596, 2432.184, 3282.572, 3408.026, 3263.219, 2930.151, 3395.465],
+        marker: {
+            symbol: 'circle'
+        }
+    }]
+});
+		</script>
+	</body>
+</html>
