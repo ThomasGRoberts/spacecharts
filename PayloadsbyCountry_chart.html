@@ -154,6 +154,8 @@ function myFunction(elem) {
 function makeChart(x=0){
   var series_title=["Payloads Launched by Country", "Space Launches by Country"]
 
+  var tooltip_text=['{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}','{series.name} copmpleted <b>{point.y:,.0f}</b><br/>space launches in {point.x}']
+
   var chart = {
     type: 'area'
   };
@@ -177,7 +179,7 @@ function makeChart(x=0){
     }
   };
   var tooltip = {
-    pointFormat: '{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}'
+    pointFormat: tooltip_text[x]
   };
   var plotOptions = {
     area: {
