@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>Satellites Launched by Country</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="highcharts.js"></script>  
+<style type="text/css">
+.onoffswitch {
+    position: relative; top: -492px; left: 20%; width: 97px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #797979; border-radius: 50px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 20px; padding: 0; line-height: 20px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Payloads";
+    padding-left: 10px;
+    background-color: #EAEAEA; color: #000000;
+}
+.onoffswitch-inner:after {
+    content: "Launches";
+    padding-right: 10px;
+    background-color: #303A42; color: #ffffff;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 22px; margin: -1px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 73px;
+    border: 2px solid #797979; border-radius: 50px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+</style>
+</head>
+<body>
+<div id="container" style="width: 70%; height: 502px; margin: 0 auto" position: absolute; top: 0px; left: 0px></div>
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked="checked" onchange="myFunction(this);" />
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+<script language="JavaScript">
+var x=0;
+var launches= [{
+         name: 'United States',
+            data: [0, 7, 11, 16, 29, 50, 38, 55, 60, 72, 53, 41, 33, 24, 25, 24, 21, 14, 23, 21, 16, 25, 15, 12, 16, 14, 19, 22, 15, 7, 7, 13, 17, 22, 15, 26, 24, 27, 23, 28, 40, 33, 26, 34, 24, 19, 22, 12, 16, 21, 19, 17, 24, 18, 18, 15, 19, 18, 15, 17]
+        }, {
+            name: 'Soviet Union/Russia',
+            data: [2, 1, 3, 3, 6, 20, 17, 30, 48, 44, 66, 74, 70, 81, 82, 74, 85, 81, 88, 99, 97, 88, 86, 89, 96, 101, 98, 97, 98, 91, 95, 89, 74, 75, 58, 54, 47, 48, 31, 21, 21, 19, 13, 21, 20, 14, 16, 17, 13, 13, 14, 14, 18, 17, 20, 15, 19, 25, 21, 12]
+        },{
+            name: 'Others',
+            data: [0, 0, 0, 0, 0, 2, 0, 2, 4, 2, 8, 4, 7, 9, 13, 8, 3, 11, 14, 8, 11, 11, 5, 4, 11, 6, 10, 10, 8, 5, 8, 14, 10, 19, 15, 15, 8, 14, 20, 23, 25, 25, 34, 27, 14, 29, 23, 24, 23, 29, 32, 36, 33, 35, 42, 45, 40, 47, 47, 54]
+      }
+   ];   
+   var payloads= [{
+         name: 'United States',
+            data: [0, 7, 12, 17, 34, 55, 54, 66, 90, 99, 83, 61, 61, 30, 43, 32, 24, 19, 28, 29, 20, 32, 17, 16, 17, 17, 28, 34, 30, 11, 11, 21, 24, 39, 32, 28, 30, 36, 36, 38, 81, 210, 33, 45, 31, 27, 25, 14, 17, 32, 35, 18, 35, 35, 27, 27, 79, 43, 49, 59]
+        }, {
+            name: 'Soviet Union/Russia',
+            data: [2, 1, 3, 4, 7, 20, 17, 35, 64, 44, 66, 74, 70, 88, 98, 89, 108, 95, 111, 122, 104, 121, 101, 111, 128, 123, 118, 124, 120, 118, 121, 107, 99, 96, 82, 77, 59, 64, 37, 27, 27, 28, 15, 24, 30, 19, 21, 21, 19, 15, 18, 21, 29, 23, 25, 21, 30, 37, 27, 14]
+        },{
+            name: 'Others',
+            data: [0, 0, 0, 0, 0, 2, 0, 2, 4, 2, 8, 4, 7, 10, 13, 9, 3, 12, 16, 8, 12, 12, 5, 4, 17, 7, 15, 17, 16, 9, 9, 17, 14, 31, 22, 24, 20, 23, 28, 33, 46, 88, 80, 50, 23, 49, 42, 37, 36, 44, 57, 64, 59, 62, 75, 78, 95, 113, 96, 103]
+      }
+   ];     
+   
+   var series=[payloads, launches];
+
+   
+
+   // function definex(){
+   //    if(document.getElementById('myonoffswitch').checked=true){
+   //       x=0;
+   //    } else {
+   //       x=1;   
+   //    }
+   // };   
+
+   // var series_title=["Payloads Launched by Country", "Space Launches by Country"]
+
+   // var chart = {
+   //    type: 'area'
+   // };
+   // var title = {
+   //    text: series_title[x]   
+   // };
+   // var subtitle = {
+   //    text: '(1957-2016)'  
+   // };
+   // var xAxis = {
+   //    allowDecimals: false,
+   //    labels: {
+   //       formatter: function () {
+   //          return this.value; // clean, unformatted number for year
+   //       }
+   //    }
+   // };
+   // var yAxis = {
+   //    title: {
+   //       text: 'Year'
+   //    }
+   // };
+   // var tooltip = {
+   //    pointFormat: '{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}'
+   // };
+   // var plotOptions = {
+   //    area: {
+   //       stacking: 'normal',
+   //       pointStart: 1957,
+   //       marker: {
+   //          enabled: false,
+   //          symbol: 'circle',
+   //          radius: 2,
+   //          states: {
+   //             hover: {
+   //               enabled: true
+   //             }
+   //          }
+   //       }
+   //    }
+   // };
+
+function myFunction(elem) {
+      
+
+   if (elem.checked) {
+         makeChart(0);
+      } else {
+         makeChart(1);
+   }
+}
+
+function makeChart(x=0){
+  var series_title=["Payloads Launched by Country", "Space Launches by Country"]
+
+  var chart = {
+    type: 'area'
+  };
+  var title = {
+    text: series_title[x]   
+  };
+  var subtitle = {
+    text: '(1957-2016)'  
+  };
+  var xAxis = {
+    allowDecimals: false,
+    labels: {
+        formatter: function () {
+          return this.value; // clean, unformatted number for year
+        }
+    }
+  };
+  var yAxis = {
+    title: {
+        text: 'Year'
+    }
+  };
+  var tooltip = {
+    pointFormat: '{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}'
+  };
+  var plotOptions = {
+    area: {
+        stacking: 'normal',
+        pointStart: 1957,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+              hover: {
+                enabled: true
+              }
+          }
+        }
+    }
+  };
+	var json = {};   
+   json.chart = chart; 
+   json.title = title;   
+   json.subtitle = subtitle; 
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;  
+   json.series = series[x];
+   json.plotOptions = plotOptions;
+   $('#container').highcharts(json);
+}
+
+$(document).ready(function() {  
+   makeChart();
+});
+
+</script>
+
+</body>
+</html>
