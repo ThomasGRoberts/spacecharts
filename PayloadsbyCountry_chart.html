@@ -156,6 +156,7 @@ function makeChart(x=0){
 
   var tooltip_text=['{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}','{series.name} completed <b>{point.y:,.0f}</b><br/>space launches in {point.x}']
 
+  var axis_title=["Payloads","Launches"]
   var chart = {
     type: 'area'
   };
@@ -175,8 +176,8 @@ function makeChart(x=0){
   };
   var yAxis = {
     title: {
-        text: 'Year'
-    }
+        text: axis_title[x]
+   }
   };
   var tooltip = {
     pointFormat: tooltip_text[x]
