@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Spacesuits Incidents</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+<script src="https://rawgit.com/ThomasGRoberts/spacecharts/master/SpacesuitIncidents_style.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 70%; height: 450px; margin: 0 auto"></div>
+
+
+		<script type="text/javascript">
+
+// Create the chart
+Highcharts.Tick.prototype.drillable = function(){};
+Highcharts.chart('container', {
+    chart: {
+        type: 'column',
+        marginBottom: 60
+    },
+    title: {
+        text: 'Reported Spacesuit Incidents by Type'
+    },
+    subtitle: {
+        text: '<i>Click a column to see the number of reported incidents by type.</i>'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Number of Reported Significant Incidents',
+        },
+        max: 11
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: false,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b><br/>'
+    },
+
+    series: [{
+        name: 'Incidents by Decade',
+        colorByPoint: false,
+        data: [ {
+            name: '1980s',
+            y: 2,
+            drilldown: '1980s'
+        }, {
+            name: '1990s',
+            y: 6,
+            drilldown: '1990s'
+        }, {
+            name: '2000s',
+            y: 10,
+            drilldown: '2000s'
+        }, {
+            name: '2010s*',
+            y: 9,
+            drilldown: '2010s*'
+        }]
+    }],
+    drilldown: {
+        series: [{
+            name: '1980s',
+            id: '1980s',
+            data: [
+                [
+                    'Carbon Dioxide',
+                    0
+                ],
+                [
+                    'Glove Damage',
+                    0
+                ],
+                [
+                    'Visual Impairment',
+                    0
+                ],
+                [
+                    'Temperature',
+                    1
+                ],
+                [
+                    'Water',
+                    1
+                ],
+                [
+                    'Other',
+                    0
+                ]
+            ]
+        }, {
+            name: '1990s',
+            id: '1990s',
+            data: [
+                [
+                    'Carbon Dioxide',
+                    0
+                ],
+                [
+                    'Glove Damage',
+                    1
+                ],
+                [
+                    'Visual Impairment',
+                    2
+                ],
+                [
+                    'Temperature',
+                    2
+                ],
+                [
+                    'Water',
+                    0
+                ],
+                [
+                    'Other',
+                    1
+                ]
+            ]
+        }, {
+            name: '2000s',
+            id: '2000s',
+            data: [
+                [
+                    'Carbon Dioxide',
+                    3
+                ],
+                [
+                    'Glove Damage',
+                    2
+                ],
+                [
+                    'Visual Impairment',
+                    4
+                ],
+                [
+                    'Temperature',
+                    1
+                ],
+                [
+                    'Water',
+                    0
+                ],
+                [
+                    'Other',
+                    0
+                ]
+            ]
+        }, {
+            name: '2010s*',
+            id: '2010s*',
+            data: [
+                [
+                    'Carbon Dioxide',
+                    1
+                ],
+                [
+                    'Glove Damage',
+                    0
+                ],
+                [
+                    'Visual Impairment',
+                    1
+                ],
+                [
+                    'Temperature',
+                    1
+                ],
+                [
+                    'Water',
+                    5
+                ],
+                [
+                    'Other',
+                    1
+                ]
+            ]
+        }]
+    }
+});
+		</script>
+	</body>
+</html>
