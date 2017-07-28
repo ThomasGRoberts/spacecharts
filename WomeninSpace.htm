@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Women in the International Astronaut Corps</title>
+
+		<style type="text/css">
+		text {
+    		text-decoration: none !important;
+    		text-decoration-color: #000000;
+		}
+		</style>
+	</head>
+	<body>
+<script src="https://rawgit.com/ThomasGRoberts/spacecharts/master/WomeninSpace_style.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 500px; height: 450px; margin: 0 auto"></div>
+
+		<script type="text/javascript">
+
+// Create the chart
+Highcharts.getOptions().drilldown.activeDataLabelStyle.color = 'black';
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'pie',
+        marginBottom: 30
+    },
+    title: {
+        text: 'Women in the International Space Corps'
+    },
+    subtitle: {
+        text: '<i>Click the slices to view data by country.</i>'
+    },
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.0f}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b>'
+    },
+    series: [{
+        name: 'Astronauts',
+        colorByPoint: true,
+        data: [{
+            name: 'Men',
+            y: 485,
+            color: '#4F6182',
+            drilldown: 'Men Astronauts'
+        }, {
+            name: 'Women',
+            y: 57,
+            color: '#C44220',
+            drilldown: 'Women Astronauts'
+        }]
+    }],
+    drilldown: {
+        series: [{
+            name: 'Men Astronauts',
+            id: 'Men Astronauts',
+            data: [{
+                	name: 'United States',
+                	y: 287,
+                	color: '#4F6182'
+            	}, {
+            		name: 'Soviet Union/Russia',
+            		y: 114,
+            		color: '#242D3C'
+            	}, {
+            		name: 'China',
+            		y: 10,
+            		color: '#8F9AAF'
+            	}, {
+            		name: 'Germany',
+            		y: 10,
+            		color: '#3A475F'
+            	}, {
+            		name: 'France',
+            		y: 9,
+            		color: '#8F9AAF'
+            	}, {
+            		name: 'Japan',
+            		y: 8,
+            		color: '#6F7D98'
+            	}, {
+            		name: 'Canada',
+            		y: 6,
+            		color: '#BFC5D1'
+            	}, {
+            		name: 'Italy',
+           			y: 6,
+            		color: '#5F6F8D'
+            	}, {
+            		name: 'Others',
+            		y: 35,
+            		color: '#161B24'
+            	}
+            ]        
+        }, {
+            name: 'Women Astronauts',
+            id: 'Women Astronauts',
+            // data: [
+            //     ['United States', 45],
+            //     ['Soviet Union/Russia', 4],
+            //     ['Canada', 2],
+            //     ['Japan', 2],
+            //     ['China', 1],
+            //     ['France', 1],
+            //     ['Italy', 1],
+            //     ['South Korea', 1]
+            // ]
+            data: [{
+                	name: 'United States',
+                	y: 45,
+                	color: '#C44220'
+            	}, {
+            		name: 'Soviet Union/Russia',
+            		y: 4,
+            		color: '#6B2412'
+            	}, {
+            		name: 'Canada',
+            		y: 2,
+            		color: '#D4755C'
+            	}, {
+            		name: 'Japan',
+            		y: 2,
+            		color: '#DE9785'
+            	}, {
+            		name: 'China',
+            		y: 1,
+            		color: '#A1371B'
+            	}, {
+            		name: 'France',
+            		y: 1,
+            		color: '#E9BAAD'
+            	}, {
+            		name: 'Italy',
+            		y: 1,
+            		color: '#5A1E0F'
+            	}, {
+            		name: 'South Korea',
+           			y: 1,
+            		color: '#361209'
+            	}
+            ]       
+        }]
+    }
+});
+		</script>
+	</body>
+</html>
