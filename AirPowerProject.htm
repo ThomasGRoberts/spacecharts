@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+<script src="https://rawgit.com/ThomasGRoberts/spacecharts/master/highcharts.js"></script>
+<script src="https://rawgit.com/ThomasGRoberts/spacecharts/master/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 70%; height: 400px; margin: 0 auto"></div>
+
+
+
+		<script type="text/javascript">
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'Aircraft in the United States Air Force by Type'
+    },
+    subtitle: {
+        text: '<i>Click a datapoint to see the breakdown by subtype.</i>'
+    },
+    xAxis: {
+        categories: ['1998', '1999', '2000', '2001', '2002', '2003', '2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016'],
+        tickmarkPlacement: 'on',
+        title: {
+            enabled: false
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Total Aircraft'
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        }
+    },
+    tooltip: {
+        split: false,
+        valueSuffix: ' aircraft'
+    },
+    plotOptions: {
+        area: {
+            stacking: 'normal',
+            pointStart: 1998,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Special Ops Forces',
+        // data: [124, 146, 129, 125, 125, 120, 119, 117, 116, 121, 118, 102, 107, 112, 109, 126, 130, 128, 148]
+        data: [{
+            y: 124,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 146,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 129,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 125,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 125,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 120,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 119,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 117,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 116,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 121,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 118,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 102,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 107,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 112,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 109,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 126,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 130,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 128,
+            drilldown: 'Special Ops Forces'
+        }, {
+            y: 148,
+            drilldown: 'Special Ops Forces'
+        }]
+    }, {
+        name: 'Bombers',
+        data: [208, 205, 208, 208, 208, 192, 182, 181, 182, 181, 182, 162, 163, 159, 162, 162, 159, 159, 158]
+    }, {
+        name: 'Helicopters',
+        data: [165, 156, 164, 171, 167, 167, 164, 193, 202, 193, 193, 203, 191, 192, 183, 202, 170, 188, 189]
+    }, {
+        name: 'ISR/BM/C3',
+        data: [135, 148, 151, 159, 158, 162, 161, 176, 180, 183, 314, 348, 376, 456, 473, 511, 491, 542, 538]
+    }, {
+        name: 'Tankers',
+        data: [621, 641, 638, 638, 639, 640, 637, 625, 626, 627, 597, 546, 511, 511, 508, 507, 501, 497, 491]
+    }, {
+        name: 'Transport',
+        data: [1141, 1075, 1043, 1031, 1006, 1003, 972, 931, 899, 920, 864, 842, 842, 847, 823, 803, 783, 762, 727]
+    }, {
+        name: 'Trainers',
+        data: [1238, 1272, 1279, 1293, 1293, 1350, 1308, 1277, 1267, 1281, 1108, 1042, 1114, 1000, 1190, 1213, 1189, 1195, 1187]
+    }, {
+        name: 'Fighter/Attack',
+        data: [2644, 2652, 2588, 2577, 2545, 2551, 2526, 2518, 2506, 2422, 2259, 2286, 2240, 1967, 2026, 2025, 2012, 1961, 2034]
+    }],
+    drilldown: {
+        series: [{
+            name: 'Special Ops Forces',
+            id: 'Special Ops Forces',
+            data: [{
+                name: 'AC-130 H J U W',
+                data: [21, 21, 21, 21, 21, 21, 21, 21, 21, 23, 25, 25, 25, 25, 25, 37, 37, 35, 33]
+            }, {
+                name: 'CV-22',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 7, 10, 12, 16, 19, 28, 32, 38, 43]
+            }, {
+                name: 'MC-130 E H J P W',
+                data: [53, 66, 66, 66, 66, 63, 62, 63, 61, 62, 64, 67, 70, 71, 65, 61, 61, 55, 72]
+            }, {
+                name: 'MH-53',
+                data: [40, 40, 38, 38, 38, 36, 36, 33, 33, 32, 22, 0, 0, 0, 0, 0, 0, 0, 0]
+            }, {
+                name: 'MH-60',
+                data: [10, 9, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }, {
+                name: 'WC-130 (SOF)',
+                data: [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }]
+            // data: [21, 21, 21, 21, 21, 21, 21, 21, 21, 23, 25, 25, 25, 25, 25, 37, 37, 35, 33]
+        }]
+    }
+});
+
+x=1
+
+function myFunction(elem) {
+      
+
+   if (x=1) {
+         makeChart(0);
+      } else {
+         makeChart(1);
+   }
+}
+
+function makeChart(x=0){
+  var series_title=["Payloads Launched by Country", "Space Launches by Country"]
+
+  var tooltip_text=['{series.name} placed <b>{point.y:,.0f}</b><br/>payloads in orbit in {point.x}','{series.name} completed <b>{point.y:,.0f}</b><br/>space launches in {point.x}']
+
+  var chart = {
+    type: 'area'
+  };
+  var title = {
+    text: series_title[x]   
+  };
+  var subtitle = {
+    text: '(1957-2016)'  
+  };
+  var xAxis = {
+    allowDecimals: false,
+    labels: {
+        formatter: function () {
+          return this.value; // clean, unformatted number for year
+        }
+    }
+  };
+  var yAxis = {
+    title: {
+        text: 'Year'
+    }
+  };
+  var tooltip = {
+    pointFormat: tooltip_text[x]
+  };
+  var plotOptions = {
+    area: {
+        stacking: 'normal',
+        pointStart: 1957,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+              hover: {
+                enabled: true
+              }
+          }
+        }
+    }
+  };
+    var json = {};   
+   json.chart = chart; 
+   json.title = title;   
+   json.subtitle = subtitle; 
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;  
+   json.series = series[x];
+   json.plotOptions = plotOptions;
+   $('#container').highcharts(json);
+}
+
+$(document).ready(function() {  
+   makeChart();
+});
+		</script>
+	</body>
+</html>
